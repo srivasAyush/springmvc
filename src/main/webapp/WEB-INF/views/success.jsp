@@ -8,8 +8,9 @@
 <title>Success Page</title>
 </head>
 <body>
-	<h1>Welcome, ${name} </h1>
-	<h1>Your email address id ${email}</h1>
-	<h1>Your password is ${password} try to secure the password.</h1>
+	<h1>Welcome, ${user.name} </h1>
+	<h1>Your email address id ${user.email}</h1>
+	<h1>Your password is ${user.password} try to secure the password.</h1>
+	<h1>${form} Successfully submitted Thank You !!</h1>
 </body>
 </html>

@@ -2,12 +2,19 @@ package com.spring.mvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring.mvc.model.User;
 
 @Controller
 public class ContactController {
+	
+	@ModelAttribute
+	public void commonDataForModel(Model m) {
+		m.addAttribute("form","Registartion Form");
+	}
 	
 	@RequestMapping("/contact")
 	public String showForm() {
@@ -15,15 +22,26 @@ public class ContactController {
 	}
 	
 	@RequestMapping(path = "/processform", method = RequestMethod.POST)
+	public String handleForm(@ModelAttribute User user, Model model) {
+		System.out.println(user);		
+		return "success";
+	}
+	
+	/* For Reference we can see how it will work previously
+	 
+	@RequestMapping(path = "/processform", method = RequestMethod.POST)
 	public String handleForm(@RequestParam("email") String userEmail,
 			@RequestParam("name") String userName,
 			@RequestParam("password") String userPassword, Model model) {
-		System.out.println("User Email : " + userEmail);
-		System.out.println("User name : " + userName);
-		System.out.println("User Password : " + userPassword);
-		model.addAttribute("name",userName);
-		model.addAttribute("email",userEmail);
-		model.addAttribute("password",userPassword);
+		
+		User user =  new User();
+		user.setEmail(userEmail);
+		user.setName(userName);
+		user.setPassword(userPassword);
+		
+		System.out.println(user);
+		
+		model.addAttribute("user", user);
 		return "success";
-	}
+	} */
 }
